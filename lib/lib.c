@@ -906,7 +906,8 @@ void mode_to_string(mode_t mode, char *buf)
   *buf = c;
 }
 
-char *basename_r(char *name)
+// statically linked the basename_r funtion is provided by libc.a, thus we rename it
+char *_basename_r(char *name)
 {
   char *s = strrchr(name, '/');
 

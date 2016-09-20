@@ -277,7 +277,9 @@ char *num_to_sig(int sig);
 
 mode_t string_to_mode(char *mode_str, mode_t base);
 void mode_to_string(mode_t mode, char *buf);
-char *basename_r(char *name);
+// if statically linked basename_r will collide with libc.a, thus we rename it
+char *_basename_r(char *name);
+#define basename_r(x) _basename_r(x)
 void names_to_pid(char **names, int (*callback)(pid_t pid, char *name));
 
 pid_t xvforkwrap(pid_t pid);
